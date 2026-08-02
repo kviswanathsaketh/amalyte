@@ -1,0 +1,40 @@
+/* ============================================================
+   @amalyte/tokens-learn — Tangy Yellow
+   Warmest, most approachable, lowest intimidation (spec §2–3).
+   Contrast values are a first pass — verify against the automated
+   contrast checker per design spec §7.3 before shipping.
+   ============================================================ */
+@import '@amalyte/tokens-core/tokens.css';
+
+:root {
+  /* ---------- GRADIENT PALETTE (highlight → core → shadow) ---------- */
+  --gradient-highlight: #FFF27A;
+  --gradient-core:      #FFD400;
+  --gradient-shadow:    #C99A00;
+
+  /* ---------- ACCENT (mid-tone — flat UI fills use this, spec §3) ---------- */
+  --accent: var(--gradient-core);
+  --accent-contrast: #231C10;
+
+  /* ---------- NEUTRAL SCALE — LIGHT (default) ---------- */
+  --paper:   #FFFBF0;
+  --ink-900: #231C10;
+  --ink-700: #453824;
+  --ink-500: #7A6848;
+  --ink-300: #D9C9A0;
+  --ink-100: #F5EED8;
+
+  /* ---------- TYPOGRAPHY — warm via openness, larger scale (spec §2) ---------- */
+  --weight-headline: 400;
+  --tracking-headline: 0.01em;
+  --scale-display-mult: 1.05;
+}
+
+[data-theme="dark"] {
+  --paper:   #0D0A02;
+  --ink-900: #FFFAE0;
+  --ink-700: #E0D4A8;
+  --ink-500: #A0906A;
+  --ink-300: #453A20;
+  --ink-100: #18140A;
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@amalyte/tokens-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Studio property tokens — Blue-Violet gradient, loudest/largest-scale typography. Depends on @amalyte/tokens-core.",
+  "main": "tokens.json",
+  "files": ["tokens.css", "tokens.json", "tailwind.preset.js"],
+  "dependencies": {
+    "@amalyte/tokens-core": "workspace:*"
+  }
+}

@@ -1,0 +1,8 @@
+<!-- Amalyte mark — shared neutral base geometry (circle = the idea, square = the execution), spec §4.
+     Uses currentColor so any property/theme can recolor it via CSS. Per-property reinterpretations
+     (e.g. Parent's morph, Studio's crop-frame, Tech's grid+dot, Learn's equal pair, Labs' nested)
+     are built as separate components consuming this shared geometry, not forked copies of it. -->
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <circle cx="35" cy="50" r="28" stroke="currentColor" stroke-width="4"/>
+  <rect x="48" y="22" width="46" height="46" rx="10" stroke="currentColor" stroke-width="4"/>
+</svg>

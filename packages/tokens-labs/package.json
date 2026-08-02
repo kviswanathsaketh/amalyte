@@ -1,0 +1,11 @@
+{
+  "name": "@amalyte/tokens-labs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Labs property tokens — Vibrant Orange gradient, technical/schematic typography. Depends on @amalyte/tokens-core.",
+  "main": "tokens.json",
+  "files": ["tokens.css", "tokens.json", "tailwind.preset.js"],
+  "dependencies": {
+    "@amalyte/tokens-core": "workspace:*"
+  }
+}

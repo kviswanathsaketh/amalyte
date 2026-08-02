@@ -1,0 +1,77 @@
+/* ============================================================
+   AMALYTE — TOKENS CORE
+   Shared structural + semantic tokens only. Property-specific accent,
+   neutral scale, and typographic weight/tracking/scale values live in
+   @amalyte/tokens-{parent,studio,tech,learn,labs} — this file has none
+   of those. See docs/superpowers/specs/2026-07-29-sub-site-design-system-design.md §7.1
+   ============================================================ */
+
+:root {
+  /* ---------- SEMANTIC (identical everywhere) ---------- */
+  --success: #16A34A;
+  --warn:    #D97706;
+  --danger:  #DC2626;
+
+  /* ---------- TYPOGRAPHY FAMILY (shared, sans-only — spec §2) ---------- */
+  --font-display: "Manrope", system-ui, sans-serif;
+  --font-body:    "Manrope", system-ui, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+
+  --t-display: clamp(2.5rem, 1.7rem + 3.2vw, 4.75rem);
+  --t-h1:      clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  --t-h2:      clamp(1.625rem, 1.35rem + 1.1vw, 2.25rem);
+  --t-h3:      clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --t-body-lg: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --t-body:    clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+  --t-caption: 0.8125rem;
+
+  --lh-tight:   1.02;
+  --lh-snug:    1.08;
+  --lh-normal:  1.25;
+  --lh-relaxed: 1.6;
+  --lh-loose:   1.65;
+
+  /* ---------- SPACE (4px base) ---------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ---------- RADIUS (spec §6) ---------- */
+  --r-sm:   6px;
+  --r-md:   10px;
+  --r-lg:   16px;
+  --r-full: 999px;
+
+  /* ---------- ELEVATION — pure black-alpha, property-independent (spec §6) ---------- */
+  --e1: 0 0 0 1px rgba(0,0,0,0.08);
+  --e2: 0 2px 8px rgba(0,0,0,0.06);
+  --e3: 0 12px 32px rgba(0,0,0,0.10);
+
+  /* ---------- MOTION ---------- */
+  --ease-amalyte:  cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+
+  /* ---------- GRID ---------- */
+  --content-max:    1280px;
+  --bleed-max:      1440px;
+  --gutter-desktop: 24px;
+  --gutter-mobile:  16px;
+}
+
+/* ---------- REDUCED MOTION (spec §5.9 — applies to every property) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

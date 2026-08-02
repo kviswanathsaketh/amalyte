@@ -1,0 +1,5 @@
+@import '@amalyte/tokens-learn/tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,12 @@
+{
+  "name": "@amalyte/ui",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "dependencies": {
+    "@amalyte/tokens-core": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18.3.0"
+  }
+}

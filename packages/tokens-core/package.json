@@ -1,0 +1,8 @@
+{
+  "name": "@amalyte/tokens-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared structural + semantic tokens: radius, elevation, spacing, motion, semantic color, shared typography family, the mark base geometry. No property-specific accent/neutral/typographic-scale values — those live in @amalyte/tokens-{parent,studio,tech,learn,labs}. See docs/superpowers/specs/2026-07-29-sub-site-design-system-design.md §7.1.",
+  "main": "tokens.json",
+  "files": ["tokens.css", "tokens.json", "tailwind.preset.js", "mark.svg"]
+}

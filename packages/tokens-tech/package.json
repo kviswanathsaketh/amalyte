@@ -1,0 +1,11 @@
+{
+  "name": "@amalyte/tokens-tech",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Technologies property tokens — Dynamic Red gradient, most restrained typography. Depends on @amalyte/tokens-core.",
+  "main": "tokens.json",
+  "files": ["tokens.css", "tokens.json", "tailwind.preset.js"],
+  "dependencies": {
+    "@amalyte/tokens-core": "workspace:*"
+  }
+}

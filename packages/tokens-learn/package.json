@@ -1,0 +1,11 @@
+{
+  "name": "@amalyte/tokens-learn",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Learn property tokens — Tangy Yellow gradient, warm/larger-scale typography. Depends on @amalyte/tokens-core.",
+  "main": "tokens.json",
+  "files": ["tokens.css", "tokens.json", "tailwind.preset.js"],
+  "dependencies": {
+    "@amalyte/tokens-core": "workspace:*"
+  }
+}
