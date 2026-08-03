@@ -67,7 +67,11 @@ export function GlassCard({
   // useState, so a mousemove never triggers a React re-render of the card.
   const specularRef = useRef<HTMLSpanElement | null>(null);
   const driftIndexRef = useRef(0);
-  const driftTimerRef = useRef<ReturnType<typeof window.setInterval> | null>(null);
+  // Explicitly `number`, not `ReturnType<typeof window.setInterval>` -- with both
+  // @types/node and DOM lib in scope in this monorepo, that alias can resolve to
+  // Node's `NodeJS.Timeout` instead of the browser's numeric handle. This component
+  // is client-only (window/pointer events), so the browser type is what's correct.
+  const driftTimerRef = useRef<number | null>(null);
 
   const applySpecularPosition = (pos: { x: number; y: number }) => {
     const node = specularRef.current;
