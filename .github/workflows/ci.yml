@@ -31,8 +31,10 @@ jobs:
       - name: Build (Turborepo — only rebuilds affected apps/packages)
         run: pnpm build
 
-      # SCA / dependency scanning — spec §6.4. Wire in Snyk or Dependabot
-      # token once the repo is live; placeholder step kept visible here
-      # so this isn't silently skipped.
-      - name: Dependency scan (placeholder — add SNYK_TOKEN secret)
-        run: echo "TODO: pnpm dlx snyk test"
+      # SCA / dependency scanning — spec §6.4. GitHub Dependabot (vulnerability
+      # alerts + automated security fixes, enabled repo-wide, free tier, and
+      # notably NOT gated by GitHub Actions billing since it runs on GitHub's
+      # backend rather than as a workflow job) is the primary scanner. This
+      # step is a free, local backstop that also runs on PRs before merge.
+      - name: Dependency scan (pnpm audit)
+        run: pnpm audit --audit-level high

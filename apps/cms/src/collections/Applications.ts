@@ -6,7 +6,9 @@ type UserWithRoles = { roles?: string[] }
 
 const isStaffOrHiringManagerField: FieldAccess = ({ req: { user } }) => {
   const roles = (user as UserWithRoles | null | undefined)?.roles
-  return Boolean(roles?.includes('admin') || roles?.includes('staff') || roles?.includes('hiring_manager'))
+  return Boolean(
+    roles?.includes('admin') || roles?.includes('staff') || roles?.includes('hiring_manager'),
+  )
 }
 
 export const Applications: CollectionConfig = {
