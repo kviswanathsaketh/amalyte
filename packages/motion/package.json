@@ -1,5 +1,5 @@
 {
-  "name": "@amalyte/ui",
+  "name": "@amalyte/motion",
   "version": "0.1.0",
   "private": true,
   "main": "./src/index.ts",
@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "@amalyte/tokens-core": "workspace:*",
-    "@amalyte/motion": "workspace:*"
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.16"
   },
   "peerDependencies": {
     "react": "^18.3.0"
