@@ -16,3 +16,7 @@ dist
 out
 *.log
 .DS_Store
+*.tsbuildinfo
+test-results
+playwright-report
+playwright/.cache

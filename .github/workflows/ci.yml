@@ -31,6 +31,9 @@ jobs:
       - name: Build (Turborepo — only rebuilds affected apps/packages)
         run: pnpm build
 
+      - name: Unit/component tests (Vitest)
+        run: pnpm test
+
       # SCA / dependency scanning — spec §6.4. GitHub Dependabot (vulnerability
       # alerts + automated security fixes, enabled repo-wide, free tier, and
       # notably NOT gated by GitHub Actions billing since it runs on GitHub's
@@ -38,3 +41,33 @@ jobs:
       # step is a free, local backstop that also runs on PRs before merge.
       - name: Dependency scan (pnpm audit)
         run: pnpm audit --audit-level high
+
+  e2e-parent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        working-directory: apps/parent
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Build parent
+        working-directory: apps/parent
+        run: pnpm build
+
+      - name: E2E smoke test (Playwright)
+        working-directory: apps/parent
+        run: pnpm test:e2e
+        env:
+          CI: true
