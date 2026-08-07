@@ -7,7 +7,7 @@ export default function Home() {
       </h1>
       <p className="text-body-lg text-ink-700 mt-6 max-w-2xl">
         Amalyte Labs placeholder home — accent, voice, and motion intensity are scoped
-        via the data-property="labs" attribute on &lt;html&gt;. Real content
+        via the data-property=&quot;labs&quot; attribute on &lt;html&gt;. Real content
         lands per the phased rollout.
       </p>
     </main>
