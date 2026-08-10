@@ -16,3 +16,5 @@ export { ScrollProgressBar } from './ScrollProgressBar';
 export { useReducedMotion } from './lib/useReducedMotion';
 export { ScrollProvider } from './lib/ScrollProvider';
 export { GlassDispersionFilter } from './lib/svgFilters';
+export { springs, reducedMotionTransition } from './lib/springs';
+export { usePressSpring } from './lib/usePressSpring';

@@ -20,6 +20,27 @@ module.exports = {
           shadow: 'var(--gradient-shadow)',
         },
       },
+      // Headline personality (fluid-ui skill §15: size-specific tracking) --
+      // overrides tokens-core's generic display/h1 tuples with this property's
+      // own weight/tracking/scale-multiplier voice (spec §2–3).
+      fontSize: {
+        display: [
+          'calc(var(--t-display) * var(--scale-display-mult))',
+          {
+            lineHeight: 'var(--lh-tight)',
+            letterSpacing: 'var(--tracking-headline)',
+            fontWeight: 'var(--weight-headline)',
+          },
+        ],
+        h1: [
+          'var(--t-h1)',
+          {
+            lineHeight: 'var(--lh-tight)',
+            letterSpacing: 'var(--tracking-headline)',
+            fontWeight: 'var(--weight-headline)',
+          },
+        ],
+      },
     },
   },
 };

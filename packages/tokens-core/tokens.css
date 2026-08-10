@@ -31,6 +31,17 @@
   --lh-relaxed: 1.6;
   --lh-loose:   1.65;
 
+  /* ---------- TRACKING — size-specific, never one value for all sizes
+     (fluid-ui skill §15): negative on large display/headline text, tapering
+     to a slight positive on caption for small-text legibility. ---------- */
+  --tracking-display: -0.02em;
+  --tracking-h1:      -0.02em;
+  --tracking-h2:      -0.015em;
+  --tracking-h3:      -0.01em;
+  --tracking-body-lg: -0.005em;
+  --tracking-body:    0em;
+  --tracking-caption: 0.01em;
+
   /* ---------- SPACE (4px base) ---------- */
   --space-1:  4px;
   --space-2:  8px;

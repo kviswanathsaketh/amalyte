@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@amalyte/tokens-core": "workspace:*",
-    "@amalyte/motion": "workspace:*"
+    "@amalyte/motion": "workspace:*",
+    "motion": "^13.0.0"
   },
   "peerDependencies": {
     "react": "^18.3.0"

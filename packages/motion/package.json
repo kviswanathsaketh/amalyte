@@ -10,7 +10,8 @@
   "dependencies": {
     "@amalyte/tokens-core": "workspace:*",
     "gsap": "^3.12.5",
-    "lenis": "^1.1.16"
+    "lenis": "^1.1.16",
+    "motion": "^13.0.0"
   },
   "peerDependencies": {
     "react": "^18.3.0"

@@ -8,6 +8,8 @@
 // never two competing buttons -- and stays neutral chrome, not accent.
 
 import type { MouseEventHandler, ReactNode } from 'react';
+import { motion } from 'motion/react';
+import { usePressSpring } from '@amalyte/motion';
 
 type ButtonVariant = 'solid' | 'outline' | 'text-link';
 
@@ -32,6 +34,9 @@ export function Button({
   children: ReactNode;
 }) {
   const className = VARIANT_CLASSES[variant];
+  // Text-links have no filled/outlined surface to press, so a scale-down
+  // reads as odd -- reserve the press spring for the two pill variants.
+  const pressSpring = usePressSpring(variant === 'text-link' ? 1 : 0.97);
 
   const content =
     variant === 'text-link' ? (
@@ -45,15 +50,15 @@ export function Button({
 
   if (href) {
     return (
-      <a href={href} onClick={onClick} className={className}>
+      <motion.a href={href} onClick={onClick} className={className} {...pressSpring}>
         {content}
-      </a>
+      </motion.a>
     );
   }
 
   return (
-    <button type="button" onClick={onClick} className={className}>
+    <motion.button type="button" onClick={onClick} className={className} {...pressSpring}>
       {content}
-    </button>
+    </motion.button>
   );
 }
