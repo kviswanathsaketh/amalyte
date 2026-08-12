@@ -9,13 +9,14 @@
 // reduced motion.
 
 import { useId } from 'react';
+import type { ReactNode } from 'react';
 import { useReducedMotion } from './lib/useReducedMotion';
 
 export function Marquee({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   const prefersReducedMotion = useReducedMotion();

@@ -12,6 +12,7 @@
 // prefers reduced motion.
 
 import { useRef } from 'react';
+import type { ReactNode } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import { springs } from './lib/springs';
 import { useReducedMotion } from './lib/useReducedMotion';
@@ -21,7 +22,7 @@ export function Magnetic({
   strength = 0.4,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   strength?: number;
   className?: string;
 }) {

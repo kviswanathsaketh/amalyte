@@ -9,6 +9,7 @@
 // transform applied, when the user prefers reduced motion.
 
 import { useEffect, useRef } from 'react';
+import type { ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useReducedMotion } from './lib/useReducedMotion';
@@ -20,7 +21,7 @@ export function Parallax({
   speed = 0.3,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   speed?: number;
   className?: string;
 }) {

@@ -8,6 +8,7 @@
 // statically, with no animation, when the user prefers reduced motion.
 
 import { useEffect, useRef } from 'react';
+import type { ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useReducedMotion } from './lib/useReducedMotion';
@@ -18,7 +19,7 @@ export function Reveal({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);

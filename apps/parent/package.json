@@ -11,6 +11,7 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@amalyte/motion": "workspace:*",
     "@amalyte/tokens-core": "workspace:*",
     "@amalyte/tokens-parent": "workspace:*",
     "@amalyte/ui": "workspace:*",
