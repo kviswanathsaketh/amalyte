@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@amalyte/motion": "workspace:*",
     "@amalyte/tokens-core": "workspace:*",
     "@amalyte/tokens-tech": "workspace:*",
     "@amalyte/ui": "workspace:*",

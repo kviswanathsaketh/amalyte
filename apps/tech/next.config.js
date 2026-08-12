@@ -14,7 +14,7 @@ const nextConfig = {
   turbopack: {
     root: require('path').resolve(__dirname, '../..'),
   },
-  transpilePackages: ['@amalyte/ui', '@amalyte/tokens-core', '@amalyte/tokens-tech'],
+  transpilePackages: ['@amalyte/ui', '@amalyte/motion', '@amalyte/tokens-core', '@amalyte/tokens-tech'],
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '*.amalyte.com' },
