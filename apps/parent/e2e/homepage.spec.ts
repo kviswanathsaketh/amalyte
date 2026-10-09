@@ -20,4 +20,16 @@ test('homepage renders the hero, division cards, and division router', async ({ 
   const cta = page.getByRole('link', { name: /go to amalyte studio/i });
   await expect(cta).toBeVisible();
   await expect(cta).toHaveAttribute('href', 'https://studio.amalyte.com?intent=get-noticed');
+
+  // Liquid Monochrome structure: the divisions live in #divisions (hero CTA
+  // targets it), and the closing CTA keeps its real hrefs.
+  const divisions = page.locator('#divisions');
+  await expect(divisions).toBeVisible();
+  await expect(divisions.getByRole('heading', { name: /the divisions/i })).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /start a conversation/i }),
+  ).toHaveAttribute('href', 'mailto:contact@amalyte.com');
+  await expect(
+    page.getByRole('link', { name: /find your division/i }),
+  ).toHaveAttribute('href', '#divisions');
 });

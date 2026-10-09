@@ -3,3 +3,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Liquid Monochrome polish: the violet accent is felt only on interaction —
+   here, on text selection — never as a resting fill. --accent-soft re-
+   resolves per band, so selections inside data-theme="dark" sections pick up
+   the dark-theme value automatically. */
+::selection {
+  background: var(--accent-soft);
+}
+
+/* Keep UA chrome (form controls, scrollbars) in step with each band's theme. */
+:root {
+  color-scheme: light;
+}
+[data-theme='dark'] {
+  color-scheme: dark;
+}

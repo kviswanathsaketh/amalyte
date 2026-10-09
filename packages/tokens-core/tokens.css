@@ -12,10 +12,27 @@
   --warn:    #D97706;
   --danger:  #DC2626;
 
-  /* ---------- TYPOGRAPHY FAMILY (shared, sans-only — spec §2) ---------- */
-  --font-display: "Manrope", system-ui, sans-serif;
-  --font-body:    "Manrope", system-ui, sans-serif;
-  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+  /* ---------- ACCENT — one bluish violet for the whole group, felt ONLY on
+     hover/focus/active (2026-08-27 direction: the canvas is matte true
+     black/white; colour is spent exclusively in interaction moments, never
+     at rest). --accent-soft is the hover wash, --accent-glow the violet
+     halo that appears around glass elements on hover. ---------- */
+  --accent:          #5B54E6;
+  --accent-hover:    var(--accent);
+  --accent-contrast: #FFFFFF;
+  --accent-soft:     rgba(91, 84, 230, 0.10);
+  --accent-glow:     rgba(108, 99, 255, 0.35);
+
+  /* ---------- TYPOGRAPHY FAMILY (shared, sans-only — supersedes spec §2's
+     Manrope+IBM Plex Mono pairing, 2026-08-21: DM Sans only, everywhere,
+     including labels/data that previously used the mono treatment. The
+     actual font is loaded per-app via next/font/google and exposed as
+     --font-dm-sans on <html>; these three all resolve to that one family --
+     they stay as three separate variables so components keyed to
+     font-display/font-body/font-mono need no changes. ---------- */
+  --font-display: var(--font-dm-sans), system-ui, sans-serif;
+  --font-body:    var(--font-dm-sans), system-ui, sans-serif;
+  --font-mono:    var(--font-dm-sans), system-ui, sans-serif;
 
   --t-display: clamp(2.5rem, 1.7rem + 3.2vw, 4.75rem);
   --t-h1:      clamp(2rem, 1.5rem + 2vw, 3.25rem);
@@ -53,6 +70,9 @@
   --space-16: 64px;
   --space-24: 96px;
   --space-32: 128px;
+  --space-40: 160px;
+  --space-48: 192px;
+  --space-64: 256px;
 
   /* ---------- RADIUS (spec §6) ---------- */
   --r-sm:   6px;
@@ -76,6 +96,21 @@
   --bleed-max:      1440px;
   --gutter-desktop: 24px;
   --gutter-mobile:  16px;
+}
+
+/* ---------- DARK THEME + DARK SECTIONS — the [data-theme="dark"] selector
+   is intentionally not scoped to :root: any element (e.g. a full-bleed
+   <section data-theme="dark">) redefines these vars for its subtree, which
+   is how pages mix matte-white and matte-black bands on one screen. ---------- */
+[data-theme="dark"] {
+  --accent:       #8B85FF;
+  --accent-soft:  rgba(139, 133, 255, 0.14);
+  --accent-glow:  rgba(139, 133, 255, 0.40);
+
+  /* Elevation flips to white-alpha hairlines + deeper drop shadows */
+  --e1: 0 0 0 1px rgba(255, 255, 255, 0.12);
+  --e2: 0 2px 8px rgba(0, 0, 0, 0.50);
+  --e3: 0 12px 32px rgba(0, 0, 0, 0.60);
 }
 
 /* ---------- REDUCED MOTION (spec §5.9 — applies to every property) ---------- */

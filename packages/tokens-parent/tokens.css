@@ -1,40 +1,42 @@
 /* ============================================================
-   @amalyte/tokens-parent — Metallic Rose Gold
-   Assured, quiet, holds the group together (spec §2–3).
-   Contrast values are a first pass — verify against the automated
-   contrast checker per design spec §7.3 before shipping.
+   @amalyte/tokens-parent — Matte Monochrome
+   2026-08-27 direction change (supersedes the 2026-08-21 rose-gold-on-
+   B/W system and every per-property colour system): the whole group
+   runs on a matte true black/white canvas. The single bluish-violet
+   accent lives in tokens-core and is spent ONLY on hover/focus/active.
+   The gradient trio below is no longer a brand colour — it is the cool
+   glass refraction tint sampled by 3D/glass rendering (FluidBlob,
+   GlassCard rims, hero meshes); never use it for flat UI fills.
    ============================================================ */
 @import '@amalyte/tokens-core/tokens.css';
 
 :root {
-  /* ---------- GRADIENT PALETTE (highlight → core → shadow) ---------- */
-  --gradient-highlight: #F5D9D2;
-  --gradient-core:      #C47C6D;
-  --gradient-shadow:    #7A3D38;
+  /* ---------- GLASS REFRACTION TINT (3D/glass rendering only) ---------- */
+  --gradient-highlight: #EDEBFF;
+  --gradient-core:      #6C63FF;
+  --gradient-shadow:    #14122B;
 
-  /* ---------- ACCENT (mid-tone — flat UI fills use this, spec §3) ---------- */
-  --accent: var(--gradient-core);
-  --accent-contrast: #2B0F0A;
+  /* ---------- NEUTRAL SCALE — LIGHT (default): matte true white canvas,
+     matte true black ink, true grayscale between — no tinting. ---------- */
+  --paper:   #FFFFFF;
+  --ink-900: #000000;
+  --ink-700: #404040;
+  --ink-500: #737373;
+  --ink-300: #D4D4D4;
+  --ink-100: #F2F2F2;
 
-  /* ---------- NEUTRAL SCALE — LIGHT (default) ---------- */
-  --paper:   #FBF6F4;
-  --ink-900: #2B0F0A;
-  --ink-700: #4A2018;
-  --ink-500: #7A5048;
-  --ink-300: #C7A89F;
-  --ink-100: #F2E4DE;
-
-  /* ---------- TYPOGRAPHY — assured, editorial, calm center (spec §2) ---------- */
-  --weight-headline: 650;
-  --tracking-headline: 0em;
+  /* ---------- TYPOGRAPHY — thin DM Sans, quiet, spacious ---------- */
+  --weight-headline: 300;
+  --tracking-headline: -0.02em;
   --scale-display-mult: 1;
 }
 
 [data-theme="dark"] {
-  --paper:   #0F0708;
-  --ink-900: #FBF0ED;
-  --ink-700: #D9C0B8;
-  --ink-500: #9C7A70;
-  --ink-300: #4A2F28;
-  --ink-100: #1D100C;
+  /* Matte true black canvas, true white ink — exact inverse of light. */
+  --paper:   #000000;
+  --ink-900: #FFFFFF;
+  --ink-700: #D4D4D4;
+  --ink-500: #8C8C8C;
+  --ink-300: #404040;
+  --ink-100: #1A1A1A;
 }

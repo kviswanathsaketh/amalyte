@@ -20,6 +20,7 @@
   },
   "pnpm": {
     "overrides": {
+      "react-reconciler": "0.29.2",
       "postcss": "8.5.25",
       "sharp": "0.35.3",
       "dompurify": "3.4.13",

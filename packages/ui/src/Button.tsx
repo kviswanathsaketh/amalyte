@@ -1,11 +1,13 @@
 'use client';
 
-// Button — the primary/secondary CTA vocabulary from the Infosys reference
-// (spec §5.7) applied through the neutral-chrome-with-surgical-accent rule
-// (spec §10.1): 'solid' and 'outline' are pill-shaped primary actions that
-// spend the accent color; 'text-link' is the underlined secondary half of
-// the "dual CTA pattern" -- pair a solid/outline pill with a text-link,
-// never two competing buttons -- and stays neutral chrome, not accent.
+// Button — the primary/secondary CTA vocabulary in the Liquid Monochrome
+// language.
+// Liquid Monochrome: every variant rests in matte monochrome (black on light,
+// white on dark) and spends the violet accent only on hover/focus-visible.
+// 'solid' and 'outline' are pill-shaped primary actions; 'text-link' is the
+// quiet secondary half of the "dual CTA pattern" -- pair a solid/outline pill
+// with a text-link, never two competing buttons -- with a thin 1px underline
+// that slides in on hover.
 
 import type { MouseEventHandler, ReactNode } from 'react';
 import { motion } from 'motion/react';
@@ -14,12 +16,13 @@ import { usePressSpring } from '@amalyte/motion';
 type ButtonVariant = 'solid' | 'outline' | 'text-link';
 
 // 44px minimum touch target on every variant (min-h-11 = 44px on the 4px scale).
-const BASE = 'inline-flex items-center justify-center min-h-11 font-medium text-body transition-colors duration-fast ease-amalyte';
+const BASE =
+  'inline-flex items-center justify-center min-h-11 font-medium text-body transition-all duration-base ease-amalyte focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-paper';
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  solid: `${BASE} gap-2 px-6 rounded-full bg-accent text-accent-contrast hover:opacity-90`,
-  outline: `${BASE} gap-2 px-6 rounded-full border-2 border-accent text-accent bg-transparent hover:bg-accent hover:text-accent-contrast`,
-  'text-link': `${BASE} gap-1 text-ink-900 underline underline-offset-4 hover:text-accent`,
+  solid: `${BASE} gap-2 px-6 rounded-full bg-ink-900 text-paper hover:bg-accent hover:text-accent-contrast hover:shadow-[0_8px_30px_var(--accent-glow)]`,
+  outline: `${BASE} gap-2 px-6 rounded-full border border-ink-300 text-ink-900 bg-transparent hover:border-accent hover:text-accent hover:bg-accent-soft`,
+  'text-link': `${BASE} group gap-1 text-ink-900 hover:text-accent`,
 };
 
 export function Button({
@@ -41,7 +44,9 @@ export function Button({
   const content =
     variant === 'text-link' ? (
       <>
-        <span>{children}</span>
+        <span className="relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-base after:ease-amalyte after:content-[''] group-hover:after:scale-x-100">
+          {children}
+        </span>
         <span aria-hidden="true">&rarr;</span>
       </>
     ) : (

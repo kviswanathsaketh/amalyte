@@ -12,6 +12,7 @@ export { Grain } from './Grain';
 export { Magnetic } from './Magnetic';
 export { CursorDot } from './CursorDot';
 export { ScrollProgressBar } from './ScrollProgressBar';
+export { ScrollScrubVideo } from './ScrollScrubVideo';
 
 export { useReducedMotion } from './lib/useReducedMotion';
 export { ScrollProvider } from './lib/ScrollProvider';

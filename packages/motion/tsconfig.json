@@ -11,7 +11,19 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "noEmit": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    // The monorepo runs a React 18/19 split (apps/cms is on React 19; the
+    // web properties + this package are on 18). pnpm's hidden hoist exposes
+    // @types/react@19 deep inside .pnpm, where @react-three/fiber's .d.ts
+    // files would otherwise resolve it and clash with our React 18 types.
+    // Pin every 'react*' type resolution in this package to our own copy.
+    "paths": {
+      "react": ["./node_modules/@types/react"],
+      "react/jsx-runtime": ["./node_modules/@types/react/jsx-runtime"],
+      "react-dom": ["./node_modules/@types/react-dom"],
+      "react-dom/*": ["./node_modules/@types/react-dom/*"]
+    }
   },
   "include": ["src"]
 }

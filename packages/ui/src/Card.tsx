@@ -24,7 +24,7 @@ export function Card({
 
   return (
     <div
-      className={`bg-paper border border-ink-100 rounded-lg shadow-e1 p-6 text-ink-900 ${className ?? ''}`}
+      className={`bg-paper border border-ink-100 rounded-lg shadow-e1 p-8 text-ink-900 ${className ?? ''}`}
     >
       {children}
     </div>

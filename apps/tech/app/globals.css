@@ -3,3 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Liquid Monochrome polish: selection carries the group's one violet accent
+   in its soft-wash form — colour is spent only in interaction moments. */
+::selection {
+  background: var(--accent-soft);
+}

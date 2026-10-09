@@ -1,10 +1,13 @@
 // TopStrip — the persistent property switcher + account-state bar (spec §3.7).
-// Identical markup on every property; only the active property is highlighted
-// via the accent token already scoped by data-property on <html>.
+// Identical markup on every property. Liquid Monochrome styling: a quiet matte
+// paper strip with a hairline bottom separator, thin caption-size links, and
+// the violet accent appearing only on hover/focus-visible.
 //
 // This is deliberately the first component built: it's the one piece of UI
 // every app shares from day one, and it's the visible proof that SSO state
 // (once Keycloak/Entra are wired in) is shared silently across subdomains.
+
+import { ThemeToggle } from './ThemeToggle';
 
 type Property = 'parent' | 'studio' | 'tech' | 'learn' | 'labs';
 
@@ -26,29 +29,36 @@ export function TopStrip({
   accountName?: string;
 }) {
   return (
-    <div className="h-7 bg-ink-900 text-paper text-caption flex items-center justify-between px-4">
-      <nav className="flex items-center gap-4">
+    <div className="h-8 bg-paper text-ink-900 text-caption flex items-center justify-between px-6 border-b border-ink-100">
+      <nav className="flex items-center gap-6">
         {PROPERTIES.map((p) => (
           <a
             key={p.key}
             href={p.href}
             className={
               p.key === active
-                ? 'text-accent font-medium'
-                : 'text-ink-300 hover:text-paper transition-colors duration-fast ease-amalyte'
+                ? 'text-ink-900 font-medium'
+                : 'text-ink-500 hover:text-accent transition-colors duration-base ease-amalyte'
             }
           >
             {p.label}
           </a>
         ))}
       </nav>
-      <div>
+      <div className="flex items-center gap-6">
+        <ThemeToggle />
         {isAuthenticated ? (
-          <a href="https://amalyte.com/account" className="hover:text-accent">
+          <a
+            href="https://amalyte.com/account"
+            className="text-ink-500 hover:text-accent transition-colors duration-base ease-amalyte"
+          >
             {accountName ?? 'Account'}
           </a>
         ) : (
-          <a href="https://id.amalyte.com/login" className="hover:text-accent">
+          <a
+            href="https://id.amalyte.com/login"
+            className="text-ink-500 hover:text-accent transition-colors duration-base ease-amalyte"
+          >
             Sign in
           </a>
         )}

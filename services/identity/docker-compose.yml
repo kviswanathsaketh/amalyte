@@ -1,0 +1,65 @@
+# Keycloak — content-property SSO for the five amalyte.com sites (spec §3.5).
+#
+# Local/staging stack: Keycloak + its own Postgres container.
+# Production target: Oracle free-tier AMD VM (1GB RAM — heap is capped below,
+# spec §11.1). The DB can later be pointed at Azure `amalyte-pg-dev` by
+# overriding KC_DB_URL instead of running the bundled postgres service.
+#
+# Usage:  cp .env.example .env   # fill in secrets
+#         docker compose up -d
+# Admin console: http://localhost:8080/admin  (bootstrap admin from .env)
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: ${KC_DB_PASSWORD:?set KC_DB_PASSWORD in .env}
+    volumes:
+      - keycloak-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keycloak -d keycloak"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.3
+    restart: unless-stopped
+    # start-dev is for local/staging only — it enables HTTP on localhost and
+    # relaxed hostname checks. Production on the Oracle VM switches to
+    # `start --optimized --hostname=https://id.amalyte.com` behind TLS.
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KC_ADMIN_USERNAME:?set KC_ADMIN_USERNAME in .env}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KC_ADMIN_PASSWORD:?set KC_ADMIN_PASSWORD in .env}
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: ${KC_DB_PASSWORD}
+      # Lean config for the 1GB free-tier VM (spec §11.1).
+      JAVA_OPTS_APPEND: -Xms128m -Xmx512m
+      KC_HEALTH_ENABLED: "true"
+      KC_METRICS_ENABLED: "true"
+    ports:
+      - "8080:8080"
+    volumes:
+      # Realm JSON is imported on first boot; later edits need a fresh volume
+      # or a manual re-import via the admin console / kcadm.
+      - ./realm:/opt/keycloak/data/import:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      # Keycloak 26 serves /health on the management interface (port 9000),
+      # not the main HTTP port.
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000 && echo -e 'GET /health/ready HTTP/1.0\r\n\r\n' >&3 && grep -q '200' <&3"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+
+volumes:
+  keycloak-pgdata:

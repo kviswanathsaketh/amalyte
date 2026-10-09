@@ -9,6 +9,16 @@
 // and top/bottom wall-thickness shading. Used system-wide: cards, pill nav,
 // tag pills, CTA buttons -- hence the `as` prop and className passthrough.
 //
+// 2026-08-27 "Liquid Monochrome" tuning: the resting state is fully
+// monochrome/neutral (white/silver rims and shading only — the group's one
+// violet accent is felt ONLY on hover). On hover the accent enters through
+// the existing specular/rim light path, never as a fill: the specular patch
+// tints to --accent-glow and the wall-thickness pseudo-element picks up a
+// faint violet rim glow (inset hairline + soft inner halo reading
+// --accent / --accent-glow). Outer glow is impossible here anyway — the card
+// is overflow-hidden — so the hover violet hugs the inside of the rim, which
+// is also where real glass would catch it.
+//
 // Safari/Firefox don't support the SVG-filter term inside backdrop-filter,
 // so the whole backdrop-filter value there is simply ignored per the CSS
 // cascade -- the rim ring, near-zero fill, and shading stay intact as an
@@ -182,7 +192,24 @@ export function GlassCard({
           box-shadow:
             inset 0 1px 0 rgba(255, 255, 255, 0.22),
             inset 0 -10px 16px -12px rgba(0, 0, 0, 0.4);
+          transition: box-shadow var(--duration-base) var(--ease-amalyte);
           pointer-events: none;
+        }
+
+        /* Liquid Monochrome: the violet accent is felt ONLY on hover, and
+           only through the light path — a faint rim glow hugging the inside
+           of the edge (outer glow would clip against overflow-hidden), plus
+           the specular patch tinting violet via --glass-spec below. */
+        .${scopeClass}:hover::after {
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.22),
+            inset 0 -10px 16px -12px rgba(0, 0, 0, 0.4),
+            inset 0 0 0 1px var(--accent-soft, rgba(91, 84, 230, 0.10)),
+            inset 0 0 18px var(--accent-glow, rgba(108, 99, 255, 0.35));
+        }
+
+        .${scopeClass}:hover {
+          --glass-spec: var(--accent-glow, rgba(108, 99, 255, 0.35));
         }
       `}</style>
 
@@ -197,7 +224,7 @@ export function GlassCard({
           height: '30%',
           transform: 'translate(-50%, -50%)',
           borderRadius: '50%',
-          background: 'radial-gradient(closest-side, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 70%)',
+          background: 'radial-gradient(closest-side, var(--glass-spec, rgba(255, 255, 255, 0.5)), rgba(255, 255, 255, 0) 70%)',
           filter: 'blur(10px)',
           pointerEvents: 'none',
           transition: trackingEnabled

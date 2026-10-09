@@ -12,7 +12,7 @@ import type {
 } from 'react';
 
 const FIELD_CLASSES =
-  'w-full rounded-md border border-ink-300 bg-paper text-ink-900 text-body px-4 py-2 outline-none transition-colors duration-fast ease-amalyte focus:border-accent focus:ring-2 focus:ring-accent';
+  'w-full rounded-md border border-ink-300 bg-paper text-ink-900 text-body px-4 py-3 placeholder:text-ink-500 outline-none transition-all duration-base ease-amalyte focus:border-accent focus:ring-4 focus:ring-accent-soft';
 
 export function Label({
   className,
@@ -21,7 +21,7 @@ export function Label({
 }: LabelHTMLAttributes<HTMLLabelElement>) {
   return (
     <label
-      className={`block text-caption font-medium text-ink-700 mb-2 ${className ?? ''}`}
+      className={`block text-caption text-ink-500 mb-2 ${className ?? ''}`}
       {...props}
     >
       {children}

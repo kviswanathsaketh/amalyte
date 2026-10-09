@@ -15,17 +15,17 @@ const PROPERTIES: { key: Property; label: string; href: string }[] = [
   { key: 'labs', label: 'Labs', href: 'https://labs.amalyte.com' },
 ];
 
+// TEMPORARY (2026-08-22): /legal/* and /contact don't exist yet -- linking to
+// them would 404 on the live domain. Down to a single working mailto until
+// those pages ship; restore the full Terms/Privacy/DPDP/Contact set then.
 const LEGAL_LINKS: { label: string; href: string }[] = [
-  { label: 'Terms', href: 'https://amalyte.com/legal/terms' },
-  { label: 'Privacy', href: 'https://amalyte.com/legal/privacy' },
-  { label: 'DPDP Notice', href: 'https://amalyte.com/legal/dpdp-notice' },
-  { label: 'Contact', href: 'https://amalyte.com/contact' },
+  { label: 'Contact', href: 'mailto:contact@amalyte.com' },
 ];
 
 // Eyebrow-label convention (spec §5.8): uppercase, font-mono, wide tracking.
 function EyebrowHeading({ children }: { children: string }) {
   return (
-    <h3 className="text-caption font-mono uppercase tracking-wide opacity-70 mb-4">
+    <h3 className="text-caption font-mono uppercase tracking-wide text-ink-500 mb-4">
       {children}
     </h3>
   );
@@ -39,8 +39,8 @@ export function Footer({
   className?: string;
 }) {
   return (
-    <footer className={`px-4 py-12 ${className ?? ''}`}>
-      <div className="max-w-content mx-auto grid grid-cols-1 sm:grid-cols-2 gap-12">
+    <footer className={`px-6 pt-32 pb-16 border-t border-ink-100 ${className ?? ''}`}>
+      <div className="max-w-content mx-auto grid grid-cols-1 sm:grid-cols-2 gap-16">
         <div>
           <EyebrowHeading>Properties</EyebrowHeading>
           <nav className="flex flex-col gap-3">
@@ -50,8 +50,8 @@ export function Footer({
                 href={p.href}
                 className={
                   p.key === active
-                    ? 'text-accent font-medium text-body'
-                    : 'text-body opacity-80 hover:opacity-100 transition-opacity duration-fast ease-amalyte'
+                    ? 'text-ink-900 font-medium text-body'
+                    : 'text-body text-ink-500 hover:text-accent transition-colors duration-base ease-amalyte'
                 }
               >
                 {p.label}
@@ -67,7 +67,7 @@ export function Footer({
               <a
                 key={l.label}
                 href={l.href}
-                className="text-body opacity-80 hover:opacity-100 transition-opacity duration-fast ease-amalyte"
+                className="text-body text-ink-500 hover:text-accent transition-colors duration-base ease-amalyte"
               >
                 {l.label}
               </a>
@@ -76,7 +76,7 @@ export function Footer({
         </div>
       </div>
 
-      <div className="max-w-content mx-auto mt-12 pt-6 border-t border-ink-100 text-caption opacity-60">
+      <div className="max-w-content mx-auto mt-24 pt-8 border-t border-ink-100 text-caption text-ink-500">
         &copy; {new Date().getFullYear()} Amalyte. All rights reserved.
       </div>
     </footer>

@@ -3,15 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./three": "./src/three/index.ts"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
   "dependencies": {
     "@amalyte/tokens-core": "workspace:*",
+    "@react-three/fiber": "^8.18.0",
     "gsap": "^3.12.5",
     "lenis": "^1.1.16",
-    "motion": "^13.0.0"
+    "motion": "^13.0.0",
+    "three": "^0.180.0"
   },
   "peerDependencies": {
     "react": "^18.3.0"
@@ -20,6 +26,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@types/react": "^18.3.0",
+    "@types/three": "^0.180.0",
     "jsdom": "^25.0.1",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",

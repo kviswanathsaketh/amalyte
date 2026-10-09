@@ -3,3 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Liquid Monochrome: the violet accent appears only on hover/focus/active —
+   text selection is an active state, so it gets the soft accent tint. */
+::selection {
+  background: var(--accent-soft);
+}

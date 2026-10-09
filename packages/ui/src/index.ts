@@ -7,3 +7,5 @@ export { Card } from './Card';
 export { Input, Textarea, Label } from './Form';
 export { Footer } from './Footer';
 export { CaseStudyShell } from './CaseStudyShell';
+export { ThemeScript } from './ThemeScript';
+export { ThemeToggle } from './ThemeToggle';
